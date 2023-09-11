@@ -19,12 +19,14 @@ exports.postUserData =(req,res,next)=>{
         const user = {
                 name: req.body.name,
                 email: req.body.email,
+                phone: req.body.phone,
                 password: req.body.password
         };
-
+  
         User.create({
                 name: user.name,
                 email: user.email,
+                phone: user.phone,
                 password: user.password
         })
         .then(()=>{
@@ -33,8 +35,9 @@ exports.postUserData =(req,res,next)=>{
         })
         .catch((err) =>{
                
-                res.send("You have not register yet !!",err);
-                throw new Error(err);
+                res.status(200).send("Email Already exist, use different email");
+
+                
         });
 
 };
